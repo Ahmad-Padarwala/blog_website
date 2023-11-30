@@ -55,8 +55,8 @@ router.route("/getbookviewdetail/:id").get(Books.getbookviewdetail);
 router.route("/gettrashbooks").get(Books.gettrashbooks);
 router.route("/getbookdetail/:id").get(Books.getbookdetail);
 router.route("/trashbook/:id").patch(Books.trashbooks);
-router.route("/trashbackbook/:id").patch(Books.getbacktrashbooks);
 router.route("/deletebook/:id").delete(Books.deletebook);
+router.route("/trashbackbook/:id").patch(Books.getbacktrashbooks);
 router.patch(
   "/editbook/:id",
   uploads.fields([

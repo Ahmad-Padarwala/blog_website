@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../../font/Poppins-Medium.ttf") format("truetype");
+}
+/* ADMIN LOGIN COMPONENT CSS */
+.box {
+  width: 450px;
+  padding: 40px;
+  background: #191919;
+  transition: 0.25s;
+}
+.box input[type="text"],
+.box input[type="password"] {
+  margin: 20px auto;
+  border: 2px solid #3498db;
+  width: 250px;
+  transition: 0.25s;
+}
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+  width: 300px;
+  border-color: #2ecc71;
+}
+.box input[type="submit"] {
+  margin: 20px auto;
+  border: 2px solid #2ecc71;
+  transition: 0.25s;
+}
+.box input[type="submit"]:hover {
+  background: #2ecc71;
+}
+/* DASHBOARD COMPONENT CSS */
+.sidebar {
+  width: 250px;
+  font-family: Poppins;
+}
+.dashboard {
+  left: 250px;
+  width: calc(100% - 250px);
+  font-family: Poppins;
+}
+.boxes {
+  border-radius: 7px;
+  width: 30%;
+  color: white;
+  padding: 30px 0px;
+  transition: all 0.5s ease;
+  background-color: #191919;
+  margin-bottom: 25px;
+}
+.boxe1 {
+  width: 48%;
+}

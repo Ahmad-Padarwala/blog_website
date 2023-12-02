@@ -13,7 +13,7 @@
   width: 25%;
   text-align: center;
   border-right: 1px dashed;
-  padding: 60px 10px;
+  padding: 40px 10px;
   cursor: pointer;
 }
 
@@ -73,7 +73,13 @@
     display: flex;
     flex-wrap: wrap;
   }
-
+  #books_name p {
+    width: 100% !important;
+    padding: 20px 0 !important;
+  }
+  #books_name {
+    padding: 20px 0px;
+  }
   #pillers_sections {
     width: 50%;
     border-right: 1px dashed;
@@ -96,10 +102,16 @@
     border-right: none;
     border-bottom: 1px dashed;
   }
+  #books_name p {
+    width: 100% !important;
+    padding: 20px 0 !important;
+  }
+  #books_name {
+    padding: 20px 15px !important;
+  }
 }
 
 /* HERO BANNER CSS */
-
 #banner_container {
   background-image: url("../../image/banner-img-1.webp");
   font-family: noto;
@@ -118,9 +130,14 @@
     margin-left: -20px;
     font-size: 300px;
   }
-
   #banner_text {
     font-size: 18px;
+  }
+  #books_heding {
+    width: 100%;
+  }
+  #books_name p {
+    width: 100%;
   }
 }
 @media screen and (max-width: 320px) {
@@ -141,6 +158,21 @@
   }
 }
 
+#books_heding {
+  background-color: #f3f4f6;
+  font-family: noto;
+}
+#books_name {
+  padding: 20px 50px;
+}
+#books_name h2 {
+  font-size: 24px;
+}
+#books_name p {
+  width: 50%;
+  padding: 20px 0;
+  line-height: 35px;
+}
 #books_card_main_section {
   display: flex;
   flex-wrap: wrap;
@@ -203,12 +235,17 @@
   #books_card_main_section {
     display: flex;
     flex-wrap: wrap;
-    /* padding: 20px; */
   }
   #books_card_text {
     padding-top: 60px;
   }
   #books_card_main {
+    width: 100%;
+  }
+  #books_heding {
+    width: 100%;
+  }
+  #books_name p {
     width: 100%;
   }
 }

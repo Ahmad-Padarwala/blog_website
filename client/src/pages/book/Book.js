@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ShimerUi from "../component/ShimerUi";
 const PORT = process.env.REACT_APP_URL;
 
 const Book = () => {
   const [books, setBooks] = useState([]);
   const [bookCategory, setBookCategory] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [postsPerPage] = useState(12);
   const [showBackButton, setShowBackButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(true);
@@ -29,19 +31,23 @@ const Book = () => {
         `${PORT}getAllBookCateFilter/${selectedCategory}`
       );
       setBooks(res.data);
-      console.log(res.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   const getBookCategory = async () => {
+    setLoading(true);
     axios
       .get(`${PORT}getBookCategory`)
       .then((res) => {
         setBookCategory(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   };
 
@@ -89,29 +95,46 @@ const Book = () => {
         </select>
       </div>
       <div id="books_card_main_section" dir="rtl">
-        {currentPosts.map((book, index) => (
-          <div
-            key={index}
-            id="books_card_main"
-            onClick={() => gotoBookViewpage(book.id)}
-          >
-            <div id="books_card_img">
-              <img
-                src={`../../upload/book/${book.book_thumbnail}`}
-                width="40%"
-                alt={book.title}
-              />
+        {loading ? (
+          <>
+            <div id="books_card_main">
+              <ShimerUi height={"300px"} width={"283px"} />
             </div>
-            <div id="books_card_text">
-              <p>{book.book_title}</p>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-regular fa-star"></i>
+            <div id="books_card_main">
+              <ShimerUi height={"300px"} width={"283px"} />
             </div>
-          </div>
-        ))}
+            <div id="books_card_main">
+              <ShimerUi height={"300px"} width={"283px"} />
+            </div>
+            <div id="books_card_main">
+              <ShimerUi height={"300px"} width={"283px"} />
+            </div>
+          </>
+        ) : (
+          currentPosts.map((book, index) => (
+            <div
+              key={index}
+              id="books_card_main"
+              onClick={() => gotoBookViewpage(book.id)}
+            >
+              <div id="books_card_img">
+                <img
+                  src={`../../upload/book/${book.book_thumbnail}`}
+                  width="40%"
+                  alt={book.title}
+                />
+              </div>
+              <div id="books_card_text">
+                <p>{book.book_title}</p>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-regular fa-star"></i>
+              </div>
+            </div>
+          ))
+        )}
 
         <div className="pagination" dir="rtl">
           {showNextButton && (

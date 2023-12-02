@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/home";
 import News from "../pages/news";
 import Book from "../pages/book";
+import Warriors from "../pages/warriors";
 
 const HomeRoute = () => {
   return (
@@ -29,6 +30,14 @@ const HomeRoute = () => {
           element={
             <>
               <Book />
+            </>
+          }
+        />
+        <Route
+          path="/warriors"
+          element={
+            <>
+              <Warriors />
             </>
           }
         />

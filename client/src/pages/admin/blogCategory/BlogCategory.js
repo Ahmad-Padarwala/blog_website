@@ -200,14 +200,16 @@ const BlogCategory = () => {
                               </td>
                               <td className="py-4">{e.category_description}</td>
                               <td className="py-4">
-                                <button
-                                  className="text-red-500"
-                                  onClick={() => {
-                                    openDeleteModal(e.id);
-                                  }}
-                                >
-                                  <i className="fa-solid fa-trash"></i>
-                                </button>
+                                {e.category_name !== "اسلامی جنگجو" && (
+                                  <button
+                                    className="text-red-500"
+                                    onClick={() => {
+                                      openDeleteModal(e.id);
+                                    }}
+                                  >
+                                    <i className="fa-solid fa-trash"></i>
+                                  </button>
+                                )}
                               </td>
                             </tr>
                           </>

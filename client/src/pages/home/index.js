@@ -2,8 +2,8 @@ import React from "react";
 import Categories from "./Categories";
 import Navbar from "../component/Navbar";
 import HeroSection from "./HeroSection";
+import News from "./News";
 import Books from "./Books";
-// import News from "./News";
 import Footer from "../component/Footer";
 import "../../assets/css/pages/Home.css";
 
@@ -13,7 +13,7 @@ const index = () => {
       <Navbar />
       <HeroSection />
       <Categories />
-      {/* <News /> */}
+      <News />
       <Books />
       <Footer />
     </>

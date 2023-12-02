@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import BookSidebar from "./BookSidebar";
+import ShimerUi from "../component/ShimerUi";
 const PORT = process.env.REACT_APP_URL;
 
 function BookView() {
-  const location = useLocation();
+  const { id } = useParams();
   const [bookId, setBookId] = useState(null);
   const [viewBook, setViewBook] = useState([]);
   const [selectedTab, setSelectedTab] = useState("details");
   const [pdfUrl, setPdfUrl] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setBookIdTOLocation(location.state.id);
-  }, [location]);
+    setBookIdTOLocation(id);
+  }, [id]);
 
   useEffect(() => {
     if (bookId) {
@@ -32,8 +34,10 @@ function BookView() {
       const res = await axios.get(`${PORT}getbookviewdetail/${bookId}`);
       setViewBook(res.data[0]);
       setPdfUrl(`../upload/book/${res.data[0].book_pdf}`);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -70,34 +74,47 @@ function BookView() {
             </ul>
           </div>
 
-          {selectedTab === "details" && (
+          {loading ? (
+            <div>
+              <ShimerUi height={"500px"} width={"800px"} />
+            </div>
+          ) : (
             <>
-              <div className="border-b py-3">
-                <p className="text-center text-2xl font-semibold p-2.5">
-                  {viewBook.book_title}
-                </p>
-              </div>
-              <div className="details-content flex flex-col mt-2">
-                <img
-                  src={`../../upload/book/${viewBook.book_thumbnail}`}
-                  alt="news"
-                />
+              {selectedTab === "details" && (
+                <>
+                  <div className="border-b py-3">
+                    <p className="text-center text-2xl font-semibold p-2.5 break-all">
+                      {viewBook.book_title}
+                    </p>
+                  </div>
+                  <div className="details-content flex flex-col mt-2">
+                    <img
+                      src={`../../upload/book/${viewBook.book_thumbnail}`}
+                      alt="book_thumbnail"
+                    />
 
-                <p className="book_description">{viewBook.book_description}</p>
-              </div>
-              <p className="book_description">{viewBook.book_author}</p>
+                    <p className="book_description break-all">
+                      {viewBook.book_description}
+                    </p>
+                  </div>
+                  <p className="book_description break-all">
+                    {viewBook.book_author}
+                  </p>
+                </>
+              )}
+
+              {selectedTab === "reading" && pdfUrl && (
+                <iframe
+                  title="PDF Viewer"
+                  src={pdfUrl}
+                  width="100%"
+                  height="800px"
+                />
+              )}
             </>
           )}
-
-          {selectedTab === "reading" && pdfUrl && (
-            <iframe
-              title="PDF Viewer"
-              src={pdfUrl}
-              width="100%"
-              height="800px"
-            />
-          )}
         </div>
+
         <div className="sidebar-news-page mt-5 md:mt-0">
           <BookSidebar />
         </div>

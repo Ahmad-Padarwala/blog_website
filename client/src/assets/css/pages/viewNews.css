@@ -222,6 +222,7 @@
   font-family: "noto";
   margin: 10px 0;
   width: 850px;
+  overflow-x: hidden;
 }
 .details-content {
   font-family: "noto";

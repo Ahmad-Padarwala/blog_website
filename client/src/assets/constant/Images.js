@@ -1,1 +1,1 @@
-export { default as Logo } from "../image/logo.webp";
+export { default as Logo } from "../image/logo.png";

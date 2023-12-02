@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import NewsSidebar from "./NewsSidebar";
+import ShimerUi from "../component/ShimerUi";
 const PORT = process.env.REACT_APP_URL;
 
 const ViewNews = () => {
-  const location = useLocation();
-  const [newsId, setNewsId] = useState(location.state.id);
+  const { id } = useParams();
   const [viewNews, setViewNews] = useState([]);
+  const [newsId, setNewsId] = useState(id);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getNewsViewData();
   }, [newsId]);
 
   const getNewsViewData = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(`${PORT}getblogpostdetail/${newsId}`);
       setViewNews(res.data[0]);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -36,8 +40,6 @@ const ViewNews = () => {
     return `${year}-${month}-${day}`;
   };
 
-  const { id } = useParams();
-
   useEffect(() => {
     setNewsId(id);
   }, [id]);
@@ -50,35 +52,44 @@ const ViewNews = () => {
   return (
     <>
       <div className="main-news-view-page">
-        <div className="view_news_main_section">
-          <div className="view_news_image">
-            <img
-              src={`../upload/blog/${viewNews.blog_image}`}
-              alt="news"
-              className="w-full"
-            />
+        {loading ? (
+          <div className="view_news_main_section">
+            <ShimerUi height={"500px"} width={"686px"} />
           </div>
-          <div className="view_main_contant">
-            <div className="view_news_title ">{viewNews.blog_title}</div>
-            <div className="view_news_content">
-              <p>
-                <span className="special-text">
-                  {stripHtmlTags(viewNews.blog_content) || "Data not available"}
-                </span>
+        ) : (
+          <div className="view_news_main_section">
+            <div className="view_news_image">
+              <img
+                src={`../upload/blog/${viewNews.blog_image}`}
+                alt="news"
+                className="w-full"
+              />
+            </div>
+            <div className="view_main_contant">
+              <div className="view_news_title break-words">
+                {viewNews.blog_title}
+              </div>
+              <div className="view_news_content break-words">
+                <p>
+                  <span className="special-text">
+                    {stripHtmlTags(viewNews.blog_content)}
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-between view_news_main">
+              <p className="view_news_date">
+                <span>مصنف :</span> {viewNews.blog_author}
+              </p>
+              <p className="view_news_date">
+                <span>اشاعت کی تاریخ :</span>
+                {formatDate(viewNews.blog_publish_date)}
               </p>
             </div>
           </div>
+        )}
 
-          <div className="flex justify-between view_news_main">
-            <p className="view_news_date">
-              <span>مصنف :</span> {viewNews.blog_author}
-            </p>
-            <p className="view_news_date">
-              <span>اشاعت کی تاریخ :</span>
-              {formatDate(viewNews.blog_publish_date)}
-            </p>
-          </div>
-        </div>
         <div className="sidebar-news-page ms-5">
           <NewsSidebar />
         </div>

@@ -33,10 +33,11 @@ const Sidebar = () => {
         <div className="text-2xl font-bold ml-8">BLOGS</div>
         <div className="dashboard-links mt-7">
           <div
-            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${location.pathname === "/dashboard"
-              ? "bg-blue-500"
-              : "hover:bg-blue-500"
-              } transition-colors duration-300 flex items-center`}
+            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${
+              location.pathname === "/dashboard"
+                ? "bg-blue-500"
+                : "hover:bg-blue-500"
+            } transition-colors duration-300 flex items-center`}
             onClick={() => navigate("/dashboard")}
           >
             <NavLink to="/dashboard">
@@ -45,11 +46,12 @@ const Sidebar = () => {
             </NavLink>
           </div>
           <div
-            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${location.pathname === "/blogcategory"
-              ? "bg-blue-500"
-              : "hover:bg-blue-500"
-              } transition-colors duration-300 flex items-center`}
-              onClick={() => navigate("/blogcategory")}
+            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${
+              location.pathname === "/blogcategory"
+                ? "bg-blue-500"
+                : "hover:bg-blue-500"
+            } transition-colors duration-300 flex items-center`}
+            onClick={() => navigate("/blogcategory")}
           >
             <NavLink to="/blogcategory">
               <i className="fa-solid fa-layer-group"></i>
@@ -57,11 +59,12 @@ const Sidebar = () => {
             </NavLink>
           </div>
           <div
-            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${location.pathname === "/allblogpost"
-              ? "bg-blue-500"
-              : "hover:bg-blue-500"
-              } transition-colors duration-300 flex items-center`}
-              onClick={() => navigate("/allblogpost")}
+            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${
+              location.pathname === "/allblogpost"
+                ? "bg-blue-500"
+                : "hover:bg-blue-500"
+            } transition-colors duration-300 flex items-center`}
+            onClick={() => navigate("/allblogpost")}
           >
             <NavLink to="/allblogpost">
               <i className="fa-solid fa-layer-group"></i>
@@ -69,11 +72,12 @@ const Sidebar = () => {
             </NavLink>
           </div>
           <div
-            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${location.pathname === "/bookcategory"
-              ? "bg-blue-500"
-              : "hover:bg-blue-500"
-              } transition-colors duration-300 flex items-center`}
-              onClick={() => navigate("/bookcategory")}
+            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${
+              location.pathname === "/bookcategory"
+                ? "bg-blue-500"
+                : "hover:bg-blue-500"
+            } transition-colors duration-300 flex items-center`}
+            onClick={() => navigate("/bookcategory")}
           >
             <NavLink to="/bookcategory">
               <i className="fa-solid fa-book-open"></i>
@@ -81,11 +85,12 @@ const Sidebar = () => {
             </NavLink>
           </div>
           <div
-            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${location.pathname === "/allbooks"
-              ? "bg-blue-500"
-              : "hover:bg-blue-500"
-              } transition-colors duration-300 flex items-center`}
-              onClick={() => navigate("/allbooks")}
+            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${
+              location.pathname === "/allbooks"
+                ? "bg-blue-500"
+                : "hover:bg-blue-500"
+            } transition-colors duration-300 flex items-center`}
+            onClick={() => navigate("/allbooks")}
           >
             <NavLink to="/allbooks">
               <i className="fa-solid fa-book-open"></i>
@@ -94,11 +99,12 @@ const Sidebar = () => {
           </div>
 
           <div
-            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${location.pathname === "/addnamecategory"
-              ? "bg-blue-500"
-              : "hover:bg-blue-500"
-              } transition-colors duration-300 flex items-center`}
-              onClick={() => navigate("/addnamecategory")}
+            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${
+              location.pathname === "/addnamecategory"
+                ? "bg-blue-500"
+                : "hover:bg-blue-500"
+            } transition-colors duration-300 flex items-center`}
+            onClick={() => navigate("/addnamecategory")}
           >
             <NavLink to="/addnamecategory">
               <i className="fa-solid fa-user"></i>
@@ -107,11 +113,12 @@ const Sidebar = () => {
           </div>
 
           <div
-            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${location.pathname === "/allnames"
-              ? "bg-blue-500"
-              : "hover:bg-blue-500"
-              } transition-colors duration-300 flex items-center`}
-              onClick={() => navigate("/allnames")}
+            className={`mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md ${
+              location.pathname === "/allnames"
+                ? "bg-blue-500"
+                : "hover:bg-blue-500"
+            } transition-colors duration-300 flex items-center`}
+            onClick={() => navigate("/allnames")}
           >
             <NavLink to="/allnames">
               <i className="fa-solid fa-user"></i>
@@ -119,8 +126,11 @@ const Sidebar = () => {
             </NavLink>
           </div>
 
-          <div className="mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md hover:bg-blue-500 border-2 border-blue-500 transition-colors duration-300 flex items-center">
-            <button type="button" onClick={handleLogoutClick}>
+          <div
+            onClick={handleLogoutClick}
+            className="mb-2 cursor-pointer py-2 pl-3 pr-6 rounded-md hover:bg-blue-500 border-2 border-blue-500 transition-colors duration-300 flex items-center"
+          >
+            <button type="button">
               <i className="fa-solid fa-arrow-right-from-bracket"></i>
               <span className="ml-3">Log Out</span>
             </button>

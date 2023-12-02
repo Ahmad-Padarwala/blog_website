@@ -303,6 +303,47 @@ router.get("/getblogpostwithlimit", (req, res) => {
     }
   });
 });
+router.get("/getblogpostswithsearchcategory", (req, res) => {
+  const searchQuery = req.query.q || "";
+  const q = `
+    SELECT *, DATE_FORMAT(DATE(blog_publish_date), '%d-%m-%Y') AS blog_publish_date 
+    FROM bg_blog_post 
+    WHERE blog_status = ?
+      AND blog_delete_status = ? 
+      AND (blog_title LIKE ? OR blog_content LIKE ?) 
+    ORDER BY id DESC`;
+
+  const flag = true;
+  const remove = true;
+
+  const searchValue = `%${searchQuery}%`;
+
+  conn.query(q, [flag, remove, searchValue, searchValue], (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.send(data);
+    }
+  });
+});
+
+router.get("/getblogpostswithwarriorscategory", (req, res) => {
+  const q =
+    "SELECT *, DATE_FORMAT(DATE(blog_publish_date), '%d-%m-%Y') AS blog_publish_date FROM bg_blog_post WHERE blog_status = ? AND blog_category = 25 AND blog_delete_status = ? ORDER BY id DESC";
+
+  const flag = true;
+  const remove = true;
+  console.log(q);
+  conn.query(q, [flag, remove], (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    } else {
+      res.send(data);
+    }
+  });
+});
 
 router.get("/getblogpostswithcategory/:category", (req, res) => {
   const category = req.params.category;

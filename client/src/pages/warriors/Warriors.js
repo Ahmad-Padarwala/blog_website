@@ -4,10 +4,9 @@ import { useNavigate, NavLink } from "react-router-dom";
 import ShimerUi from "../component/ShimerUi";
 const PORT = process.env.REACT_APP_URL;
 
-const News = () => {
+const Warriors = () => {
   const [blogPost, setBlogPost] = useState([]);
   const [blogCategory, setBlogCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(0);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -15,24 +14,21 @@ const News = () => {
   const [postsPerPage] = useState(12);
   const [showBackButton, setShowBackButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(true);
-
   useEffect(() => {
     getPosts();
     getData();
     setShowBackButton(currentPage > 1);
     setShowNextButton(currentPage < Math.ceil(blogPost.length / postsPerPage));
-  }, [currentPage, postsPerPage, selectedCategory]);
+  }, [currentPage, postsPerPage]);
 
   useEffect(() => {
     getPosts();
     getData();
-  }, [selectedCategory]);
+  }, []);
 
   const getPosts = async () => {
     try {
-      const res = await axios.get(
-        `${PORT}getblogpostswithcategory/${selectedCategory}`
-      );
+      const res = await axios.get(`${PORT}getblogpostswithwarriorscategory`);
       setBlogPost(res.data);
       setLoading(false);
     } catch (err) {
@@ -85,25 +81,6 @@ const News = () => {
 
   return (
     <>
-      <div className="category_select_box">
-        <span className="mb-2">اقسام:-</span>
-        <select
-          name="category"
-          id="category"
-          onChange={(e) => {
-            setSelectedCategory(e.target.value);
-          }}
-        >
-          <option value="0">تمام</option>
-          {blogCategory.map((category) => {
-            return (
-              <option key={category.id} value={category.id}>
-                {category.category_name}
-              </option>
-            );
-          })}
-        </select>
-      </div>
       <div className="ManiofArtical">
         {loading ? (
           <>
@@ -193,4 +170,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Warriors;

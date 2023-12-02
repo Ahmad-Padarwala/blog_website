@@ -38,14 +38,14 @@ const NewsSidebar = () => {
         <div className="view_sidebar_img">
           <img
             src={require("../../assets/image/adverti-image-veiw-news-page.jpg")}
-            alt=""
+            alt="adverisenment-img"
           />
         </div>
         <div className="mt-5 relative w-full text-grey-600" dir="ltr">
-          <form className="search_form">
+          <form action="" method="post" className="search_form">
             <div className="form-input">
               <input type="search" placeholder="Search..." />
-              <button type="submit" className="search-btn">
+              <button type="button" className="search-btn">
                 <i className="fa-solid fa-magnifying-glass"></i>
               </button>
             </div>
@@ -64,7 +64,7 @@ const NewsSidebar = () => {
               }}
             >
               <div className="w-4/12 newsidebar_img mt-5">
-                <img src={`/upload/blog/${post.blog_image}`} alt="" />
+                <img src={`/upload/blog/${post.blog_image}`} alt="blog_img" />
               </div>
 
               <div className="w-8/12 ">
